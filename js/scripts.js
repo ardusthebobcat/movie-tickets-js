@@ -18,5 +18,19 @@ Ticket.prototype.ticketCost = function() {
   }
 
   return cost;
-
 }
+
+$(document).ready(function() {
+  $("form#movie-ticket").submit(function(event) {
+    event.preventDefault();
+
+    var selectedMovie = $("select#movie").val();
+    var selectedTime = $("select#time").val();
+    var selectedAge = $("input#age").val();
+    var newTicket = new Ticket(selectedMovie, selectedTime, selectedAge);
+
+    $(".result").toggle();
+    $(".ticket-cost").text(newTicket.ticketCost());
+
+  });
+});
